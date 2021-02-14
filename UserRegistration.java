@@ -25,9 +25,4 @@ public class UserRegistration
 		Pattern pattern = Pattern.compile(MOBILENUMBER_PATTERN);
 		return pattern.matcher(phno).matches();
 	}
-	public boolean validatePassword(String password)
-	{
-		Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-		return pattern.matcher(password).matches();
-	}
 }
