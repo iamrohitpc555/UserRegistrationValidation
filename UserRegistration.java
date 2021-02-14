@@ -1,33 +1,119 @@
-package com.userregistration;
+package com.blz.exception.userregistration;
+
 import java.util.regex.Pattern;
+
 public class UserRegistration
 {
-	private static final String NAME_PATTERN = "^[A-Z][a-z]{2,}$";
-	private static final String EMAIL_ADDRESS_PATTERN = "^[a-zA-Z0-9]+([._+-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2,4})?$";
-	private static final String MOBILENUMBER_PATTERN = "^(91){1}[ ][6-9]{1}[0-9]{9,9}$";
-	public boolean validateFirstName(String fname)
+	public String validFirstName(String fname) throws Exception
 	{
-		Pattern pattern = Pattern.compile(NAME_PATTERN);
-		return pattern.matcher(fname).matches();
+		String regex = "^[A-Z][a-z]{2,}$";
+		Pattern p = Pattern.compile(regex);
+		try
+		{
+			if(p.matcher(fname).matches())
+				return "VALID";
+		} catch (Exception e) {
+			throw new InvalidUserDetailsException("Invalid First Name, try again");
+		}
+		return "INVALID";
 	}
-	public boolean validateLastName(String lname)
+	
+	public String validLastName(String lname) throws Exception
 	{
-		Pattern pattern = Pattern.compile(NAME_PATTERN);
-		return pattern.matcher(lname).matches();
+		String regex = "^[A-Z][a-z]{2,}$";
+		Pattern p = Pattern.compile(regex);
+		try
+		{
+			if(p.matcher(lname).matches())
+				return "VALID";
+		} catch (Exception e) {
+			throw new InvalidUserDetailsException("Invalid Last Name, try again");
+		}
+		return "INVALID";
 	}
-	public boolean validateEmailAddress(String email)
+	
+	public String validEmailAddress(String email) throws Exception
 	{
-		Pattern pattern = Pattern.compile(EMAIL_ADDRESS_PATTERN);
-		return pattern.matcher(email).matches();
+		String regex = "^[A-Za-z0-9+_.]+@[A-Za-z0-9+_.]+$";
+		Pattern p = Pattern.compile(regex);
+		try
+		{
+			if(p.matcher(email).matches())
+				return "VALID";
+		} catch (Exception e) {
+			throw new InvalidUserDetailsException("Invalid Email address, try again");
+		}
+		return "INVALID";
 	}
-	public boolean validatePhoneNumber(String phno)
+	
+	public String validMobileNumber(String phno) throws Exception
 	{
-		Pattern pattern = Pattern.compile(MOBILENUMBER_PATTERN);
-		return pattern.matcher(phno).matches();
+		String regex = "^(91){1}[ ][6-9]{1}[0-9]{9,9}$";
+		Pattern p = Pattern.compile(regex);
+		try
+		{
+			if(p.matcher(phno).matches())
+				return "VALID";
+		} catch (Exception e) {
+			throw new InvalidUserDetailsException("Invalid Mobile Number, try again");
+		}
+		return "INVALID";
 	}
-	public boolean validatePassword(String password)
+
+	public String validPasswordRule1(String pswd) throws Exception
 	{
-		Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
-		return pattern.matcher(password).matches();
+		String regex = "^[a-zA-Z0-9@#!_]{8,}$";
+		Pattern p = Pattern.compile(regex);
+		try
+		{
+			if(p.matcher(pswd).matches())
+				return "VALID";
+		} catch(Exception e) {
+			throw new InvalidUserDetailsException("Invalid Password, try again");
+		}
+		return "INVALID";
 	}
+
+	public String validPasswordRule2(String pswd) throws Exception
+	{
+		String regex = "^[a-zA-Z0-9@#!_][A-Z]{1}[a-zA-Z0-9@#!_]{7,}$";
+		Pattern p = Pattern.compile(regex);
+		try
+		{
+			if(p.matcher(pswd).matches())
+				return "VALID";
+		} catch(Exception e) {
+			throw new InvalidUserDetailsException("Invalid Password, try again");
+		}
+		return "INVALID";
+	}
+
+	public String validPasswordRule3(String pswd) throws Exception
+	{
+		String regex = "^[a-zA-Z0-9@#!_]{6,}[A-Z]{1}[0-9]{1}[a-zA-Z0-9]$";
+		Pattern p = Pattern.compile(regex);
+		try
+		{
+			if(p.matcher(pswd).matches())
+				return "VALID";
+		} catch (Exception e) {
+			throw new InvalidUserDetailsException("Invalid Password, try again");
+		}
+		return "INVALID";
+	}
+
+	public String validPasswordRule4(String pswd) throws Exception
+	{
+		String regex = "^[a-zA-Z0-9]{5,}[A-Z]{1}[0-9]{1}[@#!_]{1}[a-zA-Z0-9]$";
+		Pattern p = Pattern.compile(regex);
+		try
+		{
+			if(p.matcher(pswd).matches())
+				return "VALID";
+		} catch (Exception e) {
+			throw new InvalidUserDetailsException("Invalid Password, try again");
+		}
+		return "INVALID";
+	}
+
 }
